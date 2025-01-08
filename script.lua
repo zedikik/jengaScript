@@ -66,8 +66,8 @@ local Button = Tab:CreateButton({
 	Name = "Prop Spawn Area retech",
 	Callback = function()
 		if workspace.Map.Classic.Shooter:FindFirstChild("PARTSPAWNAREA") then
-			workspace.Map.Classic.Shooter:FindFirstChild("PARTSPAWNAREA").Transparency = 0.7
-			workspace.Map.Classic.Shooter:FindFirstChild("PARTSPAWNAREA").CanColide = false
+			workspace.Map.Classic.Shooter:FindFirstChild("PARTSPAWNAREA").Transparency = 0.45
+			workspace.Map.Classic.Shooter:FindFirstChild("PARTSPAWNAREA").CanCollide = false
 			workspace.Map.Classic.Shooter:FindFirstChild("PARTSPAWNAREA").Size = Vector3.new(2048, 2, 2048)
 			workspace.Map.Classic.Shooter:FindFirstChild("PARTSPAWNAREA").CFrame = CFrame.new(9, 225, -16)
 		end
