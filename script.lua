@@ -1,3 +1,7 @@
+if not _G.autoTp then
+	_G.autoTp = false
+end
+
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
@@ -73,3 +77,33 @@ local Button = Tab:CreateButton({
 		end
 	end,
 })
+local Toggle = Tab:CreateToggle({
+	Name = "Auto Teleport To Button",
+	CurrentValue = false,
+	Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Value)
+		_G.autoTp = Value
+	end,
+})
+
+local Keybind = Tab:CreateKeybind({
+	Name = "Teleport To Button Bind",
+	CurrentKeybind = "Z",
+	HoldToInteract = false,
+	Flag = "Keybind1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(Keybind)
+		if game.Players.LocalPlayer.Team.Name == "Towers" then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Map.Classic.Button.CFrame  
+		end
+	end,
+})
+
+game["Run Service"].Heartbeat:Connect(function()
+	if _G.autoTp == true then
+		if game.Players.LocalPlayer.Team.Name == "Towers" then
+			if not game.Teams.Destroyer:GetPlayers()[1]:IsFriendsWith(game.Players.LocalPlayer) then
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Map.Classic.Button.CFrame  
+			end
+		end
+	end
+end)
